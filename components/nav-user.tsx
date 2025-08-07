@@ -36,7 +36,15 @@ export function NavUser() {
   const { data: session } = useSession()
 
   const handleSignOut = async () => {
-    await signOut({ callbackUrl: "/login" })
+    // Clear NextAuth session first
+    await signOut({ 
+      redirect: false  // Don't redirect automatically
+    })
+    
+    // Then redirect to Auth0 logout to clear Auth0 session
+    // Using hardcoded values since we need them on client-side
+    const auth0LogoutUrl = `https://ycz870.jp.auth0.com/v2/logout?client_id=oehtpWr0qWsQwPkCxYUrBxcAhh1xHzpb&returnTo=${encodeURIComponent(window.location.origin + '/login')}`
+    window.location.href = auth0LogoutUrl
   }
 
   if (!session?.user) {

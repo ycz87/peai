@@ -56,12 +56,13 @@ export default async function Page() {
             <CardHeader>
               <CardTitle>Welcome back, {session.user?.name || 'User'}!</CardTitle>
               <CardDescription>
-                You're signed in as {session.user?.email}
+                You&apos;re signed in as {session.user?.email}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center space-x-4">
                 {session.user?.image && (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={session.user.image}
                     alt={session.user.name || 'User'}

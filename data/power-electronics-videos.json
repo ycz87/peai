@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "title": "电力电子技术基础",
+    "bvid": "BV1C7411E7Ww",
+    "cover": "https://i2.hdslb.com/bfs/archive/f9b589056775de79542c0aae196e1905b18ae6fe.png@308w_174h",
+    "duration": "45:30",
+    "description": "本视频介绍电力电子技术的基本概念、发展历程以及在现代电力系统中的重要作用。"
+  },
+  {
+    "id": "2", 
+    "title": "功率器件特性分析",
+    "bvid": "BV1Kt411k7Rm",
+    "cover": "https://i2.hdslb.com/bfs/archive/4c4a4c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg",
+    "duration": "52:15",
+    "description": "深入分析各种功率半导体器件的特性，包括二极管、晶闸管、MOSFET和IGBT等。"
+  },
+  {
+    "id": "3",
+    "title": "PWM控制技术详解",
+    "bvid": "BV1Ht411k7Rn",
+    "cover": "https://i2.hdslb.com/bfs/archive/5c5a5c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg", 
+    "duration": "38:42",
+    "description": "讲解脉宽调制(PWM)技术的原理、实现方法及在电力电子变换器中的应用。"
+  },
+  {
+    "id": "4",
+    "title": "DC-DC变换器设计",
+    "bvid": "BV1Gt411k7Ro",
+    "cover": "https://i2.hdslb.com/bfs/archive/6c6a6c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg",
+    "duration": "41:28",
+    "description": "介绍直流-直流变换器的基本拓扑结构、工作原理和设计方法。"
+  },
+  {
+    "id": "5",
+    "title": "逆变器原理与应用",
+    "bvid": "BV1Ft411k7Rp",
+    "cover": "https://i2.hdslb.com/bfs/archive/7c7a7c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg",
+    "duration": "49:36",
+    "description": "详细解析逆变器的工作原理、控制策略以及在新能源发电中的应用。"
+  },
+  {
+    "id": "6",
+    "title": "电机驱动控制系统",
+    "bvid": "BV1Et411k7Rq",
+    "cover": "https://i2.hdslb.com/bfs/archive/8c8a8c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg",
+    "duration": "44:22",
+    "description": "介绍电机驱动系统的组成、控制算法和在工业自动化中的应用。"
+  }
+]

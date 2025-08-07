@@ -4,24 +4,90 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { signIn } from "next-auth/react"
-import { useState } from "react"
+import { useState, useCallback } from "react"
+import { useSearchParams } from "next/navigation"
+import type { AuthError, LoginFormProps, SocialProvider } from "@/types"
+
+// Helper function to create AuthError from NextAuth error
+function createAuthError(error: unknown, operation: string): AuthError {
+  if (error instanceof Error) {
+    return {
+      type: 'Signin',
+      message: error.message || `Failed to ${operation}`,
+      code: 'SIGNIN_ERROR',
+      details: { operation }
+    }
+  }
+  
+  return {
+    type: 'UnknownError',
+    message: `An unexpected error occurred during ${operation}`,
+    code: 'UNKNOWN_ERROR',
+    details: { error: String(error), operation }
+  }
+}
+
+// Helper function to get user-friendly error messages
+function getUserFriendlyErrorMessage(error: AuthError): string {
+  switch (error.type) {
+    case 'AccessDenied':
+      return 'Access was denied. Please check your credentials or contact support.'
+    case 'AccountNotLinked':
+      return 'This account is not linked to your profile. Please use the correct sign-in method.'
+    case 'OAuthAccountNotLinked':
+      return 'This social account is already associated with another user. Please use a different account or contact support.'
+    case 'OAuthCallback':
+    case 'OAuthSignin':
+      return 'There was an issue with social sign-in. Please try again or use a different method.'
+    case 'Signin':
+      return error.message || 'Sign-in failed. Please try again.'
+    case 'Configuration':
+      return 'There is a configuration issue. Please contact support.'
+    default:
+      return error.message || 'An unexpected error occurred. Please try again.'
+  }
+}
 
 export function LoginForm({
   className,
+  onSuccess,
+  onError,
+  redirectTo = "/dashboard",
   ...props
-}: React.ComponentProps<"div">) {
+}: LoginFormProps) {
   const [isLoading, setIsLoading] = useState(false)
-
-  const handleAuth0SignIn = async () => {
+  const [error, setError] = useState<AuthError | null>(null)
+  const searchParams = useSearchParams()
+  
+  // Check for authentication errors from URL params
+  const urlError = searchParams?.get('error')
+  
+  const handleSignIn = useCallback(async (provider: SocialProvider = 'auth0') => {
     try {
       setIsLoading(true)
-      await signIn("auth0", { callbackUrl: "/dashboard" })
-    } catch (error) {
-      console.error("Sign-in error:", error)
+      setError(null)
+      
+      const result = await signIn(provider, { 
+        callbackUrl: redirectTo,
+        redirect: false // Handle redirect manually to catch errors
+      })
+      
+      if (result?.error) {
+        const authError = createAuthError(new Error(result.error), `sign in with ${provider}`)
+        setError(authError)
+        onError?.(authError)
+      } else if (result?.ok) {
+        // Redirect manually on success
+        window.location.href = result.url || redirectTo
+      }
+    } catch (err) {
+      const authError = createAuthError(err, `sign in with ${provider}`)
+      setError(authError)
+      onError?.(authError)
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [redirectTo, onError])
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -36,8 +102,20 @@ export function LoginForm({
                 </p>
               </div>
               
+              {/* Display authentication errors */}
+              {(error || urlError) && (
+                <div className="rounded-md bg-destructive/15 p-3 text-sm text-destructive">
+                  {error ? getUserFriendlyErrorMessage(error) : `Authentication error: ${urlError}`}
+                </div>
+              )}
+              
+              {/* 
+                Primary Auth0 Button - Uses Auth0 Universal Login
+                This provides the most secure and feature-complete authentication flow
+                as all authentication happens on Auth0's hosted login page
+              */}
               <Button
-                onClick={handleAuth0SignIn}
+                onClick={() => handleSignIn('auth0')}
                 disabled={isLoading}
                 className="w-full"
                 size="lg"
@@ -51,12 +129,20 @@ export function LoginForm({
                 </span>
               </div>
               
+              {/* 
+                Alternative Social Login Buttons
+                Note: These still use Auth0 as the provider but could be configured
+                to use specific social connections in Auth0 if needed. 
+                For now, they all route through Auth0's Universal Login which 
+                will show the appropriate social login options.
+              */}
               <div className="grid grid-cols-1 gap-3">
                 <Button
                   variant="outline"
-                  onClick={() => signIn("auth0", { callbackUrl: "/dashboard" })}
+                  onClick={() => handleSignIn('auth0')}
                   disabled={isLoading}
                   className="w-full"
+                  title="Sign in with Google via Auth0"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5 mr-2">
                     <path
@@ -69,9 +155,10 @@ export function LoginForm({
                 
                 <Button
                   variant="outline"
-                  onClick={() => signIn("auth0", { callbackUrl: "/dashboard" })}
+                  onClick={() => handleSignIn('auth0')}
                   disabled={isLoading}
                   className="w-full"
+                  title="Sign in with Apple via Auth0"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5 mr-2">
                     <path
@@ -86,8 +173,9 @@ export function LoginForm({
               <div className="text-center text-sm">
                 New to PEAI?{" "}
                 <button
-                  onClick={() => signIn("auth0", { callbackUrl: "/dashboard" })}
+                  onClick={() => handleSignIn('auth0')}
                   className="underline underline-offset-4 hover:text-primary"
+                  disabled={isLoading}
                 >
                   Create an account
                 </button>

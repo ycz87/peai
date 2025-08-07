@@ -10,10 +10,10 @@ import {
   GalleryVerticalEnd,
   Map,
   PieChart,
+  Play,
   Settings2,
   SquareTerminal,
 } from "lucide-react"
-import { SessionProvider } from "next-auth/react"
 
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
@@ -110,6 +110,17 @@ const data = {
       ],
     },
     {
+      title: "视频观看",
+      url: "#",
+      icon: Play,
+      items: [
+        {
+          title: "电力电子技术",
+          url: "/videos/power-electronics",
+        },
+      ],
+    },
+    {
       title: "Settings",
       url: "#",
       icon: Settings2,
@@ -154,20 +165,18 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <SessionProvider>
-      <Sidebar collapsible="icon" {...props}>
-        <SidebarHeader>
-          <TeamSwitcher teams={data.teams} />
-        </SidebarHeader>
-        <SidebarContent>
-          <NavMain items={data.navMain} />
-          <NavProjects projects={data.projects} />
-        </SidebarContent>
-        <SidebarFooter>
-          <NavUser />
-        </SidebarFooter>
-        <SidebarRail />
-      </Sidebar>
-    </SessionProvider>
+    <Sidebar collapsible="icon" {...props}>
+      <SidebarHeader>
+        <TeamSwitcher teams={data.teams} />
+      </SidebarHeader>
+      <SidebarContent>
+        <NavMain items={data.navMain} />
+        <NavProjects projects={data.projects} />
+      </SidebarContent>
+      <SidebarFooter>
+        <NavUser />
+      </SidebarFooter>
+      <SidebarRail />
+    </Sidebar>
   )
 }

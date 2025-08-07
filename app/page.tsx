@@ -113,7 +113,7 @@ export default async function Home() {
             <CardContent>
               <Link href="/login">
                 <Button size="lg" className="w-full sm:w-auto">
-                  Sign Up Now - It's Free
+                  Sign Up Now - It&apos;s Free
                 </Button>
               </Link>
             </CardContent>

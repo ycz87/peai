@@ -8,6 +8,11 @@ export const config: NextAuthConfig = {
       clientId: process.env.AUTH0_CLIENT_ID!,
       clientSecret: process.env.AUTH0_CLIENT_SECRET!,
       issuer: process.env.AUTH0_ISSUER_BASE_URL!,
+      authorization: {
+        params: {
+          scope: "openid email profile"
+        }
+      }
     }),
   ],
   pages: {
