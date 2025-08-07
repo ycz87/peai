@@ -1,11 +1,23 @@
 [
   {
     "id": "1",
-    "title": "电力电子技术基础",
+    "title": "第01章 绪论",
     "bvid": "BV1C7411E7Ww",
-    "cover": "https://i2.hdslb.com/bfs/archive/f9b589056775de79542c0aae196e1905b18ae6fe.png@308w_174h",
-    "duration": "45:30",
-    "description": "本视频介绍电力电子技术的基本概念、发展历程以及在现代电力系统中的重要作用。"
+    "cover": "https://i2.hdslb.com/bfs/archive/f9b589056775de79542c0aae196e1905b18ae6fe.png",
+    "duration": "110:37",
+    "description": "电力电子技术是一门新兴的应用于电力领域的电子技术，就是使用电力电子器件（如晶闸管，MOSFET，IGBT等）对电能进行变换和控制的技术。电力电子技术所变换的“电力”功率可大到数百MW甚至GW，也可以小到数W甚至1W以下，和以信息处理为主的信息电子技术不同，电力电子技术主要用于电力变换。本课程的内容主要包含电力电子器件、AC/DC变换器、AC/DC变换器、AC/AC变换器、DC/AC变换器五大模块。",
+    "parts": [
+      {
+        "page": 1,
+        "title": "绪论A",
+        "duration": "91:30"
+      },
+      {
+        "page": 2,
+        "title": "绪论B",
+        "duration": "49:07"
+      }
+    ]
   },
   {
     "id": "2", 
@@ -13,7 +25,29 @@
     "bvid": "BV1Kt411k7Rm",
     "cover": "https://i2.hdslb.com/bfs/archive/4c4a4c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg",
     "duration": "52:15",
-    "description": "深入分析各种功率半导体器件的特性，包括二极管、晶闸管、MOSFET和IGBT等。"
+    "description": "深入分析各种功率半导体器件的特性，包括二极管、晶闸管、MOSFET和IGBT等。",
+    "parts": [
+      {
+        "page": 1,
+        "title": "功率二极管特性",
+        "duration": "12:30"
+      },
+      {
+        "page": 2,
+        "title": "晶闸管工作原理",
+        "duration": "16:20"
+      },
+      {
+        "page": 3,
+        "title": "MOSFET特性分析",
+        "duration": "13:45"
+      },
+      {
+        "page": 4,
+        "title": "IGBT器件特性",
+        "duration": "9:40"
+      }
+    ]
   },
   {
     "id": "3",
@@ -21,7 +55,24 @@
     "bvid": "BV1Ht411k7Rn",
     "cover": "https://i2.hdslb.com/bfs/archive/5c5a5c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg", 
     "duration": "38:42",
-    "description": "讲解脉宽调制(PWM)技术的原理、实现方法及在电力电子变换器中的应用。"
+    "description": "讲解脉宽调制(PWM)技术的原理、实现方法及在电力电子变换器中的应用。",
+    "parts": [
+      {
+        "page": 1,
+        "title": "PWM基本原理",
+        "duration": "14:25"
+      },
+      {
+        "page": 2,
+        "title": "PWM调制策略",
+        "duration": "16:30"
+      },
+      {
+        "page": 3,
+        "title": "PWM实际应用",
+        "duration": "7:47"
+      }
+    ]
   },
   {
     "id": "4",
@@ -29,7 +80,24 @@
     "bvid": "BV1Gt411k7Ro",
     "cover": "https://i2.hdslb.com/bfs/archive/6c6a6c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg",
     "duration": "41:28",
-    "description": "介绍直流-直流变换器的基本拓扑结构、工作原理和设计方法。"
+    "description": "介绍直流-直流变换器的基本拓扑结构、工作原理和设计方法。",
+    "parts": [
+      {
+        "page": 1,
+        "title": "Buck变换器",
+        "duration": "13:20"
+      },
+      {
+        "page": 2,
+        "title": "Boost变换器",
+        "duration": "12:45"
+      },
+      {
+        "page": 3,
+        "title": "Buck-Boost变换器",
+        "duration": "15:23"
+      }
+    ]
   },
   {
     "id": "5",
@@ -37,7 +105,24 @@
     "bvid": "BV1Ft411k7Rp",
     "cover": "https://i2.hdslb.com/bfs/archive/7c7a7c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg",
     "duration": "49:36",
-    "description": "详细解析逆变器的工作原理、控制策略以及在新能源发电中的应用。"
+    "description": "详细解析逆变器的工作原理、控制策略以及在新能源发电中的应用。",
+    "parts": [
+      {
+        "page": 1,
+        "title": "单相逆变器",
+        "duration": "18:25"
+      },
+      {
+        "page": 2,
+        "title": "三相逆变器",
+        "duration": "20:30"
+      },
+      {
+        "page": 3,
+        "title": "新能源应用",
+        "duration": "10:41"
+      }
+    ]
   },
   {
     "id": "6",
@@ -45,6 +130,23 @@
     "bvid": "BV1Et411k7Rq",
     "cover": "https://i2.hdslb.com/bfs/archive/8c8a8c1e8f8e4e4e4e4e4e4e4e4e4e4e.jpg",
     "duration": "44:22",
-    "description": "介绍电机驱动系统的组成、控制算法和在工业自动化中的应用。"
+    "description": "介绍电机驱动系统的组成、控制算法和在工业自动化中的应用。",
+    "parts": [
+      {
+        "page": 1,
+        "title": "电机驱动系统概述",
+        "duration": "12:15"
+      },
+      {
+        "page": 2,
+        "title": "控制算法详解",
+        "duration": "19:30"
+      },
+      {
+        "page": 3,
+        "title": "工业应用实例",
+        "duration": "12:37"
+      }
+    ]
   }
 ]

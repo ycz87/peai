@@ -19,7 +19,7 @@ export interface AuthProviderProps {
   session?: ExtendedSession | null
 }
 
-// Authentication error types
+// Enhanced authentication error types
 export type AuthErrorType = 
   | 'AccessDenied'
   | 'AccountNotLinked'
@@ -39,12 +39,16 @@ export type AuthErrorType =
   | 'SignOut'
   | 'UnknownError'
   | 'Verification'
+  | 'VideoPlayerError' // Added for video-specific errors
+  | 'NetworkError'
+  | 'ValidationError'
 
 export interface AuthError {
   type: AuthErrorType
   message: string
   code?: string
   details?: Record<string, unknown>
+  timestamp?: Date
 }
 
 // Authentication loading states
@@ -104,14 +108,40 @@ export interface LoginFormProps extends Omit<React.ComponentProps<"div">, 'onErr
   redirectTo?: string
 }
 
-// Video-related interfaces
+// Enhanced Video-related interfaces with validation
+export interface VideoPart {
+  readonly page: number
+  readonly title: string
+  readonly duration: string
+}
+
 export interface Video {
-  id: string
-  title: string
-  bvid: string
-  cover: string
-  duration: string
-  description?: string
+  readonly id: string
+  readonly title: string
+  readonly bvid: string
+  readonly cover: string
+  readonly duration: string
+  readonly description?: string
+  readonly parts: readonly VideoPart[]
+}
+
+// Type guards for runtime validation
+export type VideoPartValidator = (obj: unknown) => obj is VideoPart
+export type VideoValidator = (obj: unknown) => obj is Video
+
+// Error boundary types
+export interface ErrorBoundaryState {
+  hasError: boolean
+  error: Error | null
+  errorInfo: React.ErrorInfo | null
+}
+
+export interface ErrorBoundaryProps {
+  children: React.ReactNode
+  fallback?: React.ReactNode
+  onError?: (error: Error, errorInfo: React.ErrorInfo) => void
+  resetOnPropsChange?: boolean
+  resetKeys?: Array<string | number | boolean | null | undefined>
 }
 
 // Video card component props
@@ -119,10 +149,50 @@ export interface VideoCardProps {
   video: Video
 }
 
-// Bilibili player component props
+// Video parts button component props
+export interface VideoPartButtonProps {
+  part: VideoPart
+  videoId: string
+  isActive?: boolean
+  onClick?: () => void
+}
+
+// Video parts sidebar component props
+export interface VideoPartsSidebarProps {
+  video: Video
+  currentPage: number
+  onPartSelect: (page: number) => void
+}
+
+// Enhanced Bilibili player component props with validation
 export interface BilibiliPlayerProps {
-  bvid: string
-  page?: number
-  autoplay?: boolean
-  muted?: boolean
+  readonly bvid: string
+  readonly page?: number
+  readonly autoplay?: boolean
+  readonly muted?: boolean
+  readonly onError?: (error: Error) => void
+  readonly onLoad?: () => void
+  readonly className?: string
+  readonly 'aria-label'?: string
+}
+
+// Player URL configuration
+export interface PlayerUrlConfig {
+  readonly baseUrl: string
+  readonly requiredParams: readonly string[]
+  readonly optionalParams: readonly string[]
+  readonly maxPageNumber: number
+}
+
+// Mobile detection hook types
+export interface MobileHookOptions {
+  breakpoint?: number
+  defaultValue?: boolean
+  ssr?: boolean
+}
+
+export interface MobileHookReturn {
+  isMobile: boolean
+  isHydrated: boolean
+  breakpoint: number
 }
