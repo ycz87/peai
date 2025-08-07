@@ -13,6 +13,7 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react"
+import { SessionProvider } from "next-auth/react"
 
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
@@ -26,66 +27,61 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
-// This is sample data.
+// Updated data for PEAI
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   teams: [
     {
-      name: "Acme Inc",
+      name: "PEAI",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
+      name: "AI Research",
       logo: AudioWaveform,
-      plan: "Startup",
+      plan: "Professional",
     },
     {
-      name: "Evil Corp.",
+      name: "ML Team",
       logo: Command,
-      plan: "Free",
+      plan: "Startup",
     },
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Dashboard",
+      url: "/dashboard",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Overview",
+          url: "/dashboard",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Analytics",
+          url: "/dashboard/analytics",
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "Reports",
+          url: "/dashboard/reports",
         },
       ],
     },
     {
-      title: "Models",
+      title: "AI Models",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
+          title: "Language Models",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Computer Vision",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Speech Recognition",
           url: "#",
         },
       ],
@@ -96,11 +92,11 @@ const data = {
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Getting Started",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "API Reference",
           url: "#",
         },
         {
@@ -108,7 +104,7 @@ const data = {
           url: "#",
         },
         {
-          title: "Changelog",
+          title: "Best Practices",
           url: "#",
         },
       ],
@@ -119,19 +115,19 @@ const data = {
       icon: Settings2,
       items: [
         {
-          title: "General",
+          title: "Profile",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Authentication",
+          url: "#",
+        },
+        {
+          title: "API Keys",
           url: "#",
         },
         {
           title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
           url: "#",
         },
       ],
@@ -139,17 +135,17 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Data Processing",
       url: "#",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
+      name: "Analytics Pipeline",
       url: "#",
       icon: PieChart,
     },
     {
-      name: "Travel",
+      name: "Model Training",
       url: "#",
       icon: Map,
     },
@@ -158,18 +154,20 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
+    <SessionProvider>
+      <Sidebar collapsible="icon" {...props}>
+        <SidebarHeader>
+          <TeamSwitcher teams={data.teams} />
+        </SidebarHeader>
+        <SidebarContent>
+          <NavMain items={data.navMain} />
+          <NavProjects projects={data.projects} />
+        </SidebarContent>
+        <SidebarFooter>
+          <NavUser />
+        </SidebarFooter>
+        <SidebarRail />
+      </Sidebar>
+    </SessionProvider>
   )
 }

@@ -1,0 +1,58 @@
+// User interface for Auth0 data
+export interface User {
+  id: string
+  name?: string | null
+  email?: string | null
+  image?: string | null
+}
+
+// Extended session interface
+export interface ExtendedSession {
+  user: User
+  accessToken?: string
+  expires: string
+}
+
+// Auth provider props
+export interface AuthProviderProps {
+  children: React.ReactNode
+  session?: ExtendedSession | null
+}
+
+// Navigation items
+export interface NavItem {
+  title: string
+  url: string
+  icon?: React.ComponentType<{ className?: string }>
+  isActive?: boolean
+  items?: NavItem[]
+}
+
+// Team data structure
+export interface Team {
+  name: string
+  logo: React.ComponentType<{ className?: string }>
+  plan: string
+}
+
+// Project data structure
+export interface Project {
+  name: string
+  url: string
+  icon: React.ComponentType<{ className?: string }>
+}
+
+// Dashboard data structure
+export interface DashboardData {
+  teams: Team[]
+  navMain: NavItem[]
+  projects: Project[]
+}
+
+// Authentication state
+export interface AuthState {
+  isAuthenticated: boolean
+  isLoading: boolean
+  user: User | null
+  error?: string | null
+}
