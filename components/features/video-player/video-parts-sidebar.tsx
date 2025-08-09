@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { VideoPartButton } from "@/components/video-part-button"
+import { VideoPartButton } from "./video-part-button"
 import { ChevronLeft, ChevronRight, List } from "lucide-react"
 import type { VideoPartsSidebarProps } from "@/types"
 

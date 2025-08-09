@@ -6,7 +6,7 @@ import { useState, memo, useMemo } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Play, Clock, ChevronDown, ChevronUp } from "lucide-react"
-import { VideoPartButton } from "@/components/video-part-button"
+import { VideoPartButton } from "./video-part-button"
 import type { VideoCardProps } from "@/types"
 
 export const VideoCard = memo(function VideoCard({ video }: VideoCardProps) {

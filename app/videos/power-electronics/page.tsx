@@ -1,7 +1,7 @@
 "use client"
 
 import { auth } from "@/auth"
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/layout/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,7 +16,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { VideoCard } from "@/components/video-card"
+import { VideoCard } from "@/components/features/video-player/video-card"
 import { redirect } from "next/navigation"
 import { useSession } from "next-auth/react"
 import { useEffect } from "react"

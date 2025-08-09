@@ -15,10 +15,10 @@ import {
   SquareTerminal,
 } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "../navigation/nav-main"
+import { NavProjects } from "../navigation/nav-projects"
+import { NavUser } from "../navigation/nav-user"
+import { WorkspaceSwitcher } from "../navigation/workspace-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -29,7 +29,7 @@ import {
 
 // Updated data for PEAI
 const data = {
-  teams: [
+  workspaces: [
     {
       name: "PEAI",
       logo: GalleryVerticalEnd,
@@ -167,7 +167,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <WorkspaceSwitcher workspaces={data.workspaces} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
