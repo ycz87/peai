@@ -9,6 +9,7 @@ import {
   Frame,
   GalleryVerticalEnd,
   Map,
+  MessageCircle,
   PieChart,
   Play,
   Settings2,
@@ -64,6 +65,17 @@ const data = {
         {
           title: "Reports",
           url: "/dashboard/reports",
+        },
+      ],
+    },
+    {
+      title: "Chat",
+      url: "#",
+      icon: MessageCircle,
+      items: [
+        {
+          title: "问答",
+          url: "/chat/qa",
         },
       ],
     },
